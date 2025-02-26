@@ -13,14 +13,19 @@ const ocrRoutes = require("./routes/ocrRoutes");
 
 dotenv.config();
 connectDB();
+console.log(process.env.MONGO_URI);
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/medicines", medicineRoutes);
-app.use("/api/doses", doseRoutes);
+// app.use("/api/doses", doseRoutes);
 app.use("/api/ocr", ocrRoutes);
   
 swaggerDocs(app);

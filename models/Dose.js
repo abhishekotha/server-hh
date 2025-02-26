@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const DoseSchema = new mongoose.Schema({
+  doseId: { type: String, unique: true, required: true },
   medicineId: { type: String, required: true },
   userId: { type: String, required: true }, // Links dose to a user
   doseTime: { type: String, required: true }, // Time of dose
