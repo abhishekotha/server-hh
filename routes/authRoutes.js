@@ -84,7 +84,7 @@ router.post("/signup", async (req, res) => {
  *       400:
  *         description: Invalid credentials
  */
-router.post("/signin", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });

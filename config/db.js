@@ -1,17 +1,24 @@
-const mongoose = require("mongoose");
+const mysql = require("mysql2");
 require("dotenv").config();
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      // useNewUrlParser: true,
-      // useUnifiedTopology: true,
-    });
-    console.log("MongoDB Connected...");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
+const connectDB = () => {
+  const connection = mysql.createConnection({
+    host: 'localhost', // Example: 'localhost'
+    user: 'root', // Example: 'root'
+    password: '', // Example: 'yourpassword'
+    database: 'hackhub', // Example: 'yourdatabase'
+  });
+
+  connection.connect((err) => {
+    if (err) {
+      console.error("❌ MySQL Connection Failed: ", err.message);
+      process.exit(1);
+    } else {
+      console.log("✅ MySQL Connected Successfully!");
+    }
+  });
+
+  return connection;
 };
 
 module.exports = connectDB;
